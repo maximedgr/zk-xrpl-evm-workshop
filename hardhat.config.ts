@@ -16,7 +16,6 @@ const config: HardhatUserConfig = {
     circuits: JSON.parse(JSON.stringify(circuits))
   },
   networks: {
-    // Optimism
     XRPL_EVM_Sidechain_Devnet: {
       url: "https://rpc-evm-sidechain.xrpl.org",
       accounts: [process.env.DEV_PRIVATE_KEY || ''],
