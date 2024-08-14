@@ -1,0 +1,12 @@
+[
+    {
+      "name": "multiplier",
+      "protocol": "groth16",
+      "circuit": "multiplier/multiplier.circom",
+      "input": "multiplier/input.json",
+      "wasm": "multiplier/out/circuit.wasm",
+      "zkey": "multiplier/out/multiplier.zkey",
+      "vkey": "multiplier/out/multiplier.vkey",
+      "r1cs": "multiplier/out/multiplier.r1cs"
+    }
+  ]
