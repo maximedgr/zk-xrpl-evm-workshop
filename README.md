@@ -2,7 +2,8 @@
 
 With just two lines of code, it is possible to easily generate and verify a ZK proof on the XRPL EVM Sidechain!✨    
 
-In this example, we will generate a zk proof and verify it on-chain on the XRPL EVM Sidechain using a Circom circuit representing the multiplication of two integers `a` and `b`. We want to prove to the verifier that for a given result `c`, we know these integers `a` and `b`.  
+In this example, we will generate a zk proof (SNARK) and verify it on-chain on the XRPL EVM Sidechain using a Circom circuit representing the multiplication of two integers `a` and `b` such as `a x b = c`.  
+We want to prove to the verifier that for a given result c, we know the integers a and b without revealing them.  
 This tutorial uses [hardhat-circom](https://github.com/projectsophon/hardhat-circom), a Hardhat plugin integrating [Circom](https://github.com/iden3/circom) and [SnarkJS](https://github.com/iden3/snarkjs) into Hardhat's build process.  
 
 ### Install
@@ -30,15 +31,39 @@ Circuits are located within the `circuits` folder. Each circuit will have its ow
 Run: `npx hardhat circom --verbose`  
 This will generate the **out** folder with `multiplier.zkey`, `multiplier.vkey`, `multiplier.r1cs`, and `circuit.wasm`, as well as the Solidity verifier `MultiplierVerifier.sol` under the `contracts` folder.
 
-### Prove and Deploy
+### Deploy Contract - Generate and Verify proof
 
-Run: `npx hardhat run scripts/deploy.ts --network XRPL_EVM_Sidechain_Devnet`  
+Run: `npx hardhat run scripts/deploy_generate_verify.ts --network XRPL_EVM_Sidechain_Devnet`  
 This script does four things:  
 1. Deploys the `MultiplierVerifier.sol` contract.
-2. Generates a proof from circuit intermediaries with `generateProof()`.
-3. Generates calldata with `generateCallData()`.
+2. Generates a proof from circuit intermediaries with `generateProof()` in `generate.ts`.
+3. Generates calldata with `generateCallData()` in `generate.ts`.
 
 After generating your proof, you will see a `proof.json` file in the circuit's **out** folder. This is actually the proof and contains an attribute `publicSignals`. For example, if you are proving that you know two numbers `a` and `b` such that `a * b = c`, the value `c` might be part of `publicSignals`, while `a` and `b` remain private. The verifier checks that the proof is valid for the given `c` without knowing `a` and `b`.
+
+### Commands
+
+Here are some commands to generate new proofs and verify them once your circuit is generated and the verifier is deployed.  
+
+1. Generate a New Proof:
+Description: Generates a new proof and saves it to the proof.json file.  
+Associated Script: `scripts/generate.ts`  
+*Note*: Modify the value of `BASE_PATH` according to the circuit you want to use.  
+Run:`npx hardhat run scripts/generate.ts --network XRPL_EVM_Sidechain_Devnet`  
+
+2. Verify an Existing Proof:
+Description: Verify an existing proof by interacting with the deployed contract.  
+Associated Script: `scripts/verify.ts`  
+*Note*: Modify the value of `BASE_PATH` according to the circuit you want to use, and update the value of `VERIFIER_CONTRACT_ADDRESS` with the address of your deployed contract on-chain.  
+Command:`npx hardhat run scripts/verify.ts --network XRPL_EVM_Sidechain_Devnet`  
+
+### Play arround
+
+- Try modifying the inputs and generating a new proof, then verify it with the same verifier. What happens?
+*Expected Outcome*: The proof remains valid and the verifier accepts it because the circuit is the same!
+
+- Try modifying your proof in the proof.json file by changing the value of publicSignals, and then verify it. What happens?
+*Expected Outcome*: The proof is no longer valid! The new value of publicSignals, which represents the public statement, does not satisfy the relation defined in your circuit.
 
 ### Verify the Contract
 
