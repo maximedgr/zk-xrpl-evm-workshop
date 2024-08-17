@@ -5,7 +5,7 @@ node_modules
 /cache
 /artifacts
 /multiplier/out
-
+/contracts/MultiplierVerifier.sol
 # TypeChain files
 /typechain
 /typechain-types

@@ -75,3 +75,8 @@ Command:`npx hardhat run scripts/verify.ts --network XRPL_EVM_Sidechain_Devnet`
 - XRPL EVM Sidechain documentation: https://opensource.ripple.com/docs/evm-sidechain/intro-to-evm-sidechain/
 - SnarkJS: https://github.com/iden3/snarkjs
 - Based on tutorials from https://github.com/projectsophon/hardhat-circom & https://github.com/gmchad/zardkat.
+
+
+### Troubleshooting
+
+You may encounter errors during deployment *(solidity compiler version: * contracts/MultiplierVerifier.sol (^0.6.11))* of the contract related to the automatically generated verifier contract. Simply modify the Solidity version in the contract file to match the one specified in your Hardhat configuration file.
