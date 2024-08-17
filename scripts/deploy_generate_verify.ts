@@ -1,6 +1,4 @@
 import { ethers } from "hardhat";
-import { utils } from "ffjavascript";
-import { BigNumber, BigNumberish } from "ethers";
 import {generateCallData} from "./proof_generation_utils"
 
 // Change this path fo each new circuit

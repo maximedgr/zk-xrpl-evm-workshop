@@ -1,9 +1,8 @@
 import { ethers } from "hardhat";
-import { BigNumberish } from "ethers";
 import { generateCallDataFromExistingProof } from "./proof_generation_utils";
 
 // Replace with your deployed contract address
-const VERIFIER_CONTRACT_ADDRESS = "0x90f817E5EaA0FDC948CF0F5d0c1f0Fa41FbC0dC2";
+const VERIFIER_CONTRACT_ADDRESS = "your_deployed_verifier_address";
 const BASE_PATH = "./circuits/multiplier/";
 
 async function main() {
