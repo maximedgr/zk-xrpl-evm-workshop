@@ -70,7 +70,7 @@ Command:`npx hardhat run scripts/verify.ts --network XRPL_EVM_Sidechain_Devnet`
 1. Run `npx hardhat flatten contracts/MultiplierVerifier.sol > Flattened.sol`.
 2. Go to https://explorer.xrplevm.org/ and verify your deployed contract using `Flattened.sol`.
 
-### Resources
+### Documentation
 
 - XRPL EVM Sidechain documentation: https://opensource.ripple.com/docs/evm-sidechain/intro-to-evm-sidechain/
 - SnarkJS: https://github.com/iden3/snarkjs
@@ -80,3 +80,22 @@ Command:`npx hardhat run scripts/verify.ts --network XRPL_EVM_Sidechain_Devnet`
 ### Troubleshooting
 
 You may encounter errors during deployment *(solidity compiler version: * contracts/MultiplierVerifier.sol (^0.6.11))* of the contract related to the automatically generated verifier contract. Simply modify the Solidity version in the contract file to match the one specified in your Hardhat configuration file.
+
+## More XRPL EVM Sidechain Tutorials
+
+| Repo                | Link                                                    |
+|---------------------|---------------------------------------------------------|
+| Deploy your first Solidity contract on the XRPL EVM Sidechain using Hardhat 👷 | [GitHub Repository](https://github.com/maximedgr/xrpl-evm-quickstart-hardhat) |
+| Next.js x Rainbowkit Wallet configured for the XRPL EVM Sidechain 🌈 | [GitHub Repository](https://github.com/maximedgr/xrpl-evm-quickstart-rainbowkit) |
+
+### Additional Resources
+|Resources|Link|
+|---|---|
+|Docs|https://docs.xrplevm.org/docs/evm-sidechain/intro-to-evm-sidechain/|
+|Bridge & Faucet|https://bridge.xrplevm.org/|
+|MetaMask|https://metamask.io/|
+|Solidity|https://docs.soliditylang.org/en/v0.8.26/|
+|Hardhat|https://hardhat.org/|
+|Remix IDE|https://remix.ethereum.org/|
+|Grants|https://xrplgrants.org/|
+|Accelerator|https://xrplaccelerator.org/|
